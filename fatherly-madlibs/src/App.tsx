@@ -1,11 +1,17 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
+import MadLibForm from './components/MadLibForm';
 
 const App = () => {
   return (
-    <Layout>
-      <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Hello Dad 👋</h1>
-      <p>Get ready for some fun Mad Libs!</p>
-    </Layout>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<MadLibForm />} />
+          {/* Reveal route will be added later */}
+        </Routes>
+      </Layout>
+    </Router>
   );
 };
 
