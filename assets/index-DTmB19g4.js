@@ -161,7 +161,7 @@ Please change the parent <Route path="${c}"> to <Route path="${c==="/"?"*":`${c}
   gap: 1rem;
   padding: 1rem;
   margin-top: auto;
-`,Iy=()=>{const e=jr(),{inputs:t,slideIndex:n,setSlideIndex:r}=bu();if(y.useEffect(()=>{(!t||Object.values(t).some(a=>!a))&&e("/")},[t,e]),y.useEffect(()=>{const a=s=>{s.key==="ArrowLeft"&&n>0?r(n-1):s.key==="ArrowRight"&&n<ll.length-1&&r(n+1)};return window.addEventListener("keydown",a),()=>window.removeEventListener("keydown",a)},[n,r]),!t)return null;const l=()=>{n>0&&r(n-1)},o=()=>{n<ll.length-1&&r(n+1)},i=ll[n],u=i(t);return _.jsxs(jy,{children:[_.jsx(Oy,{template:u,inputs:t,imageUrl:`/images/section-${n+1}.jpg`}),_.jsxs(Fy,{children:[_.jsx(Xl,{onClick:l,disabled:n===0,"aria-label":"Previous slide",variant:"secondary",children:"← Back"}),_.jsx(Xl,{onClick:o,disabled:n===ll.length-1,"aria-label":"Next slide",children:"Next →"})]})]})},My=J.div`
+`,Iy=()=>{const e=jr(),{inputs:t,slideIndex:n,setSlideIndex:r}=bu();if(y.useEffect(()=>{(!t||Object.values(t).some(a=>!a))&&e("/")},[t,e]),y.useEffect(()=>{const a=s=>{s.key==="ArrowLeft"&&n>0?r(n-1):s.key==="ArrowRight"&&n<ll.length-1&&r(n+1)};return window.addEventListener("keydown",a),()=>window.removeEventListener("keydown",a)},[n,r]),!t)return null;const l=()=>{n>0&&r(n-1)},o=()=>{n<ll.length-1&&r(n+1)},i=ll[n],u=i(t);return _.jsxs(jy,{children:[_.jsx(Oy,{template:u,inputs:t,imageUrl:`/images/section-${n+1}.png`}),_.jsxs(Fy,{children:[_.jsx(Xl,{onClick:l,disabled:n===0,"aria-label":"Previous slide",variant:"secondary",children:"← Back"}),_.jsx(Xl,{onClick:o,disabled:n===ll.length-1,"aria-label":"Next slide",children:"Next →"})]})]})},My=J.div`
   display: flex;
   flex-direction: column;
   align-items: center;
