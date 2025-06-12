@@ -1,8 +1,11 @@
+import Layout from './components/Layout';
+
 const App = () => {
   return (
-    <div className="app">
-      Hello Dad 👋
-    </div>
+    <Layout>
+      <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Hello Dad 👋</h1>
+      <p>Get ready for some fun Mad Libs!</p>
+    </Layout>
   );
 };
 
