@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --build fatherly-madlibs/tsconfig.json && vite build",
+    "build": "tsc --build fatherly-madlibs/tsconfig.json && cd fatherly-madlibs && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\"",
     "preview": "vite preview",
