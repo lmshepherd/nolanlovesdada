@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from '@emotion/styled';
 import { useAppState } from '../context/AppStateContext';
 import type { MadLibInputs } from '../types/MadLibInputs';
 import { colors } from '../theme/colors';
 import { isFormValid } from '../utils/isFormValid';
+import { Button } from './Button';
 
 const initialInputs: MadLibInputs = {
   adjective1: '',
@@ -17,6 +19,55 @@ const initialInputs: MadLibInputs = {
   exclamation: '',
   familyMember: '',
 };
+
+const FormContainer = styled.form`
+  max-width: 500px;
+  margin: 0 auto;
+`;
+
+const Title = styled.h2`
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: ${colors.text};
+  text-align: center;
+`;
+
+const FormGroup = styled.div`
+  margin-bottom: 1.5rem;
+`;
+
+const Label = styled.label`
+  display: block;
+  margin-bottom: 0.5rem;
+  color: ${colors.text};
+  font-size: 1.1rem;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 2px solid ${colors.gray.medium};
+  font-size: 1rem;
+  font-family: 'Patrick Hand', cursive;
+  transition: border-color 0.2s ease;
+  background-color: ${colors.white};
+
+  &:focus {
+    outline: none;
+    border-color: ${colors.primary};
+    box-shadow: 0 0 0 3px ${colors.primary}20;
+  }
+
+  &::placeholder {
+    color: ${colors.gray.medium};
+  }
+`;
+
+const ButtonContainer = styled.div`
+  margin-top: 2rem;
+  text-align: center;
+`;
 
 const MadLibForm = () => {
   const [inputs, setInputs] = useState<MadLibInputs>(initialInputs);
@@ -38,194 +89,136 @@ const MadLibForm = () => {
     setInputs((prev) => ({ ...prev, [name]: value }));
   };
 
-  const inputStyle = {
-    width: '100%',
-    padding: '0.5rem',
-    marginBottom: '1rem',
-    borderRadius: '0.5rem',
-    border: `1px solid ${colors.gray.medium}`,
-    fontSize: '1rem',
-    fontFamily: 'Patrick Hand, cursive',
-  };
-
-  const labelStyle = {
-    display: 'block',
-    marginBottom: '0.5rem',
-    color: colors.text,
-    fontSize: '1.1rem',
-  };
-
-  const buttonStyle = {
-    backgroundColor: valid ? colors.primary : colors.gray.medium,
-    color: colors.white,
-    padding: '0.75rem 1.5rem',
-    borderRadius: '0.5rem',
-    border: 'none',
-    fontSize: '1.2rem',
-    cursor: valid ? 'pointer' : 'not-allowed',
-    fontFamily: 'Patrick Hand, cursive',
-  };
-
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: '500px', margin: '0 auto' }}>
-      <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: colors.text }}>
-        Fill in the blanks to create a funny story!
-      </h2>
+    <FormContainer onSubmit={handleSubmit}>
+      <Title>Fill in the blanks to create a funny story!</Title>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label style={labelStyle} htmlFor="adjective1">
-          First Adjective (describing word)
-        </label>
-        <input
+      <FormGroup>
+        <Label htmlFor="adjective1">First Adjective (describing word)</Label>
+        <Input
           type="text"
           id="adjective1"
           name="adjective1"
           value={inputs.adjective1}
           onChange={handleChange}
-          style={inputStyle}
           placeholder="e.g., silly"
         />
-      </div>
+      </FormGroup>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label style={labelStyle} htmlFor="adjective2">
-          Second Adjective
-        </label>
-        <input
+      <FormGroup>
+        <Label htmlFor="adjective2">Second Adjective</Label>
+        <Input
           type="text"
           id="adjective2"
           name="adjective2"
           value={inputs.adjective2}
           onChange={handleChange}
-          style={inputStyle}
           placeholder="e.g., happy"
         />
-      </div>
+      </FormGroup>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label style={labelStyle} htmlFor="noun1">
-          First Noun (person, place, or thing)
-        </label>
-        <input
+      <FormGroup>
+        <Label htmlFor="noun1">First Noun (person, place, or thing)</Label>
+        <Input
           type="text"
           id="noun1"
           name="noun1"
           value={inputs.noun1}
           onChange={handleChange}
-          style={inputStyle}
           placeholder="e.g., dragon"
         />
-      </div>
+      </FormGroup>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label style={labelStyle} htmlFor="noun2">
-          Second Noun
-        </label>
-        <input
+      <FormGroup>
+        <Label htmlFor="noun2">Second Noun</Label>
+        <Input
           type="text"
           id="noun2"
           name="noun2"
           value={inputs.noun2}
           onChange={handleChange}
-          style={inputStyle}
           placeholder="e.g., castle"
         />
-      </div>
+      </FormGroup>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label style={labelStyle} htmlFor="verb1">
-          First Verb (action word)
-        </label>
-        <input
+      <FormGroup>
+        <Label htmlFor="verb1">First Verb (action word)</Label>
+        <Input
           type="text"
           id="verb1"
           name="verb1"
           value={inputs.verb1}
           onChange={handleChange}
-          style={inputStyle}
           placeholder="e.g., jump"
         />
-      </div>
+      </FormGroup>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label style={labelStyle} htmlFor="verb2">
-          Second Verb
-        </label>
-        <input
+      <FormGroup>
+        <Label htmlFor="verb2">Second Verb</Label>
+        <Input
           type="text"
           id="verb2"
           name="verb2"
           value={inputs.verb2}
           onChange={handleChange}
-          style={inputStyle}
           placeholder="e.g., dance"
         />
-      </div>
+      </FormGroup>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label style={labelStyle} htmlFor="adverb1">
-          First Adverb (describes a verb)
-        </label>
-        <input
+      <FormGroup>
+        <Label htmlFor="adverb1">First Adverb (describes a verb)</Label>
+        <Input
           type="text"
           id="adverb1"
           name="adverb1"
           value={inputs.adverb1}
           onChange={handleChange}
-          style={inputStyle}
           placeholder="e.g., quickly"
         />
-      </div>
+      </FormGroup>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label style={labelStyle} htmlFor="adverb2">
-          Second Adverb
-        </label>
-        <input
+      <FormGroup>
+        <Label htmlFor="adverb2">Second Adverb</Label>
+        <Input
           type="text"
           id="adverb2"
           name="adverb2"
           value={inputs.adverb2}
           onChange={handleChange}
-          style={inputStyle}
           placeholder="e.g., carefully"
         />
-      </div>
+      </FormGroup>
 
-      <div style={{ marginBottom: '1rem' }}>
-        <label style={labelStyle} htmlFor="exclamation">
-          Exclamation (something you shout)
-        </label>
-        <input
+      <FormGroup>
+        <Label htmlFor="exclamation">Exclamation (something you shout)</Label>
+        <Input
           type="text"
           id="exclamation"
           name="exclamation"
           value={inputs.exclamation}
           onChange={handleChange}
-          style={inputStyle}
           placeholder="e.g., Wow"
         />
-      </div>
+      </FormGroup>
 
-      <div style={{ marginBottom: '2rem' }}>
-        <label style={labelStyle} htmlFor="familyMember">
-          Family Member
-        </label>
-        <input
+      <FormGroup>
+        <Label htmlFor="familyMember">Family Member</Label>
+        <Input
           type="text"
           id="familyMember"
           name="familyMember"
           value={inputs.familyMember}
           onChange={handleChange}
-          style={inputStyle}
           placeholder="e.g., Dad"
         />
-      </div>
+      </FormGroup>
 
-      <button type="submit" style={buttonStyle} disabled={!valid}>
-        Create Story!
-      </button>
-    </form>
+      <ButtonContainer>
+        <Button type="submit" disabled={!valid}>
+          Create Story!
+        </Button>
+      </ButtonContainer>
+    </FormContainer>
   );
 };
 

@@ -5,6 +5,7 @@ import { Section } from './Section';
 import { useAppState } from '../context/AppStateContext';
 import { colors } from '../theme/colors';
 import { templates } from '../data/templates';
+import { Button } from './Button';
 
 const RevealContainer = styled.div`
   display: flex;
@@ -17,29 +18,9 @@ const RevealContainer = styled.div`
 const NavigationContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   padding: 1rem;
   margin-top: auto;
-`;
-
-const NavButton = styled.button<{ isDisabled?: boolean }>`
-  background-color: ${colors.primary};
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-family: 'Patrick Hand', cursive;
-  font-size: 1.2rem;
-  cursor: ${props => props.isDisabled ? 'not-allowed' : 'pointer'};
-  opacity: ${props => props.isDisabled ? 0.6 : 1};
-  transition: opacity 0.2s ease;
-
-  &:hover:not(:disabled) {
-    opacity: 0.9;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-  }
 `;
 
 export const Reveal: React.FC = () => {
@@ -94,20 +75,21 @@ export const Reveal: React.FC = () => {
         imageUrl={`/images/section-${slideIndex + 1}.jpg`}
       />
       <NavigationContainer>
-        <NavButton
+        <Button
           onClick={handleBack}
           disabled={slideIndex === 0}
           aria-label="Previous slide"
+          variant="secondary"
         >
           ← Back
-        </NavButton>
-        <NavButton
+        </Button>
+        <Button
           onClick={handleNext}
           disabled={slideIndex === templates.length - 1}
           aria-label="Next slide"
         >
           Next →
-        </NavButton>
+        </Button>
       </NavigationContainer>
     </RevealContainer>
   );

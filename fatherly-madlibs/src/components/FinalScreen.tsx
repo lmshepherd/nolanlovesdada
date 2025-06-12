@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { colors } from '../theme/colors';
+import { Button } from './Button';
 
 const FinalContainer = styled.div`
   display: flex;
@@ -26,22 +27,6 @@ const SubMessage = styled.p`
   font-size: 1.5rem;
   color: ${colors.text};
   margin-bottom: 3rem;
-`;
-
-const Button = styled.button`
-  background-color: ${colors.primary};
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 1rem 2rem;
-  font-family: 'Patrick Hand', cursive;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 0.9;
-  }
 `;
 
 export const FinalScreen: React.FC = () => {

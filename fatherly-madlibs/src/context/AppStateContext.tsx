@@ -20,19 +20,20 @@ export const useAppState = () => {
 
 interface AppStateProviderProps {
   children: ReactNode;
+  initialState?: Partial<AppState>;
 }
 
-export const AppStateProvider = ({ children }: AppStateProviderProps) => {
-  const [inputs, setInputs] = useState<MadLibInputs | null>(null);
-  const [slideIndex, setSlideIndex] = useState(0);
+export const AppStateProvider = ({ children, initialState = {} }: AppStateProviderProps) => {
+  const [inputs, setInputs] = useState<MadLibInputs | null>(initialState.inputs ?? null);
+  const [slideIndex, setSlideIndex] = useState(initialState.slideIndex ?? 0);
 
   return (
     <AppStateContext.Provider
       value={{
         inputs,
         slideIndex,
-        setInputs,
-        setSlideIndex,
+        setInputs: initialState.setInputs ?? setInputs,
+        setSlideIndex: initialState.setSlideIndex ?? setSlideIndex,
       }}
     >
       {children}

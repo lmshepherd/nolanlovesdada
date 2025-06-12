@@ -1,54 +1,121 @@
-# React + TypeScript + Vite
+# Father's Day Mad-Libs 🎁
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A heartwarming web application that lets you create personalized Father's Day stories through Mad-Libs style word games. Fill in the blanks with fun words and watch as they transform into touching (and often hilarious) messages for Dad!
 
-Currently, two official plugins are available:
+![Father's Day Mad-Libs Screenshot](./screenshots/app-preview.png)
+*Screenshot coming soon*
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- 🎯 Interactive form with playful prompts
+- 📖 5 unique story templates
+- 🎬 Animated slide transitions
+- ⌨️ Keyboard navigation support
+- 📱 Responsive design
+- ♿ Accessibility-focused
+- 🎨 Beautiful, modern UI with a Father's Day theme
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech Stack
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Frontend Framework**: React 19 with TypeScript
+- **Routing**: React Router v7
+- **Styling**: Emotion (CSS-in-JS)
+- **Build Tool**: Vite
+- **Testing**: Vitest + React Testing Library
+- **Code Quality**: ESLint + Prettier
+- **Type Safety**: TypeScript
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14.17.5 or higher)
+- npm (v6.14.14 or higher)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/fatherly-madlibs.git
+   cd fatherly-madlibs
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Development
+
+Run the development server:
+```bash
+npm run dev
+```
+Visit `http://localhost:5173` to see the app.
+
+### Testing
+
+Run the test suite:
+```bash
+npm test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Get test coverage:
+```bash
+npm run test:coverage
 ```
+
+### Building for Production
+
+Create a production build:
+```bash
+npm run build
+```
+
+Preview the production build:
+```bash
+npm run preview
+```
+
+### Code Quality
+
+Format code:
+```bash
+npm run format
+```
+
+Lint code:
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+├── components/     # React components
+├── context/       # React context providers
+├── data/          # Static data and templates
+├── theme/         # Theme configuration
+├── types/         # TypeScript type definitions
+├── utils/         # Utility functions
+└── tests/         # Test files
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Font: "Patrick Hand" from Google Fonts
+- Color palette inspired by modern Father's Day cards
+- Testing setup based on Vitest best practices
