@@ -127,6 +127,6 @@ describe('Reveal Component', () => {
     renderReveal();
     const image = screen.getByAltText('Illustration for this mad lib section');
     expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('src', '/images/section-1.jpg');
+    expect(image).toHaveAttribute('src', '/images/section-1.png');
   });
 }); 

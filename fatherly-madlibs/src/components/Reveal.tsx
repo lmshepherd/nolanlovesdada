@@ -72,7 +72,7 @@ export const Reveal: React.FC = () => {
       <Section
         template={filledTemplate}
         inputs={inputs}
-        imageUrl={`/images/section-${slideIndex + 1}.jpg`}
+        imageUrl={`/images/section-${slideIndex + 1}.png`}
       />
       <NavigationContainer>
         <Button
