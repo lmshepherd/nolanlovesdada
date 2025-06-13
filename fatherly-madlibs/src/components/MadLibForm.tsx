@@ -91,8 +91,7 @@ const initialInputs: MadLibInputs = {
     noun2: '',
     verb1: '',
     verb2: '',
-    adverb1: '',
-    adverb2: '',
+    adverb: '',
     exclamation: '',
   },
   mama: {
@@ -102,8 +101,7 @@ const initialInputs: MadLibInputs = {
     noun2: '',
     verb1: '',
     verb2: '',
-    adverb1: '',
-    adverb2: '',
+    adverb: '',
     exclamation: '',
   },
   nolan: {
@@ -113,8 +111,7 @@ const initialInputs: MadLibInputs = {
     noun2: '',
     verb1: '',
     verb2: '',
-    adverb1: '',
-    adverb2: '',
+    adverb: '',
     exclamation: '',
   },
   dada: {
@@ -124,8 +121,7 @@ const initialInputs: MadLibInputs = {
     noun2: '',
     verb1: '',
     verb2: '',
-    adverb1: '',
-    adverb2: '',
+    adverb: '',
     exclamation: '',
   },
 };
@@ -217,20 +213,11 @@ export default function MadLibForm({ onSubmit }: MadLibFormProps) {
           />
         </InputGroup>
         <InputGroup>
-          <Label>Adverb 1</Label>
+          <Label>Adverb</Label>
           <Input
             type="text"
-            value={inputs[section].adverb1}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(section, 'adverb1', e.target.value)}
-            placeholder="Enter an adverb"
-          />
-        </InputGroup>
-        <InputGroup>
-          <Label>Adverb 2</Label>
-          <Input
-            type="text"
-            value={inputs[section].adverb2}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(section, 'adverb2', e.target.value)}
+            value={inputs[section].adverb}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(section, 'adverb', e.target.value)}
             placeholder="Enter an adverb"
           />
         </InputGroup>

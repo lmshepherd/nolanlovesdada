@@ -6,8 +6,7 @@ export interface MadLibInputs {
     noun2: string;
     verb1: string;
     verb2: string;
-    adverb1: string;
-    adverb2: string;
+    adverb: string;
     exclamation: string;
   };
   mama: {
@@ -17,8 +16,7 @@ export interface MadLibInputs {
     noun2: string;
     verb1: string;
     verb2: string;
-    adverb1: string;
-    adverb2: string;
+    adverb: string;
     exclamation: string;
   };
   nolan: {
@@ -28,8 +26,7 @@ export interface MadLibInputs {
     noun2: string;
     verb1: string;
     verb2: string;
-    adverb1: string;
-    adverb2: string;
+    adverb: string;
     exclamation: string;
   };
   dada: {
@@ -39,8 +36,7 @@ export interface MadLibInputs {
     noun2: string;
     verb1: string;
     verb2: string;
-    adverb1: string;
-    adverb2: string;
+    adverb: string;
     exclamation: string;
   };
 } 
