@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import MadLibForm from './components/MadLibForm';
-import { Reveal } from './components/Reveal';
+import Reveal from './components/Reveal';
 import { FinalScreen } from './components/FinalScreen';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { useAppState } from './context/AppStateContext';
@@ -24,7 +24,7 @@ const AppRoutes = () => {
         <Route 
           path="/reveal" 
           element={
-            showFinal ? <FinalScreen /> : <Reveal />
+            showFinal ? <FinalScreen /> : <Reveal inputs={inputs} />
           } 
         />
         <Route path="*" element={<Navigate to="/" replace />} />

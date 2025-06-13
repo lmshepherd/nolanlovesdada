@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { useAppState } from '../context/AppStateContext';
 import { templates } from '../data/templates';
 import { colors } from '../theme/colors';
+import type { MadLibInputs } from '../types/MadLibInputs';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -65,9 +66,13 @@ const Image = styled.img`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
-export const Reveal = () => {
+interface RevealProps {
+  inputs: MadLibInputs | null;
+}
+
+export default function Reveal({ inputs }: RevealProps) {
   const navigate = useNavigate();
-  const { inputs, slideIndex, setSlideIndex } = useAppState();
+  const { slideIndex, setSlideIndex } = useAppState();
 
   useEffect(() => {
     if (!inputs) {
@@ -96,6 +101,10 @@ export const Reveal = () => {
   const currentSection = sectionKeys[slideIndex];
   const currentTemplate = templates[currentSection];
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Container>
       <StoryContainer>
@@ -121,4 +130,4 @@ export const Reveal = () => {
       </NavigationContainer>
     </Container>
   );
-}; 
+} 

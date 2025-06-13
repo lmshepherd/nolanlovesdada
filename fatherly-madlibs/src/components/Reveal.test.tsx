@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MemoryRouter } from 'react-router-dom';
-import { Reveal } from './Reveal';
+import Reveal from './Reveal';
 import { AppStateProvider } from '../context/AppStateContext';
 import type { MadLibInputs } from '../types/MadLibInputs';
 
@@ -19,47 +19,43 @@ vi.mock('react-router-dom', async () => {
 const mockInputs: MadLibInputs = {
   boonie: {
     adjective1: 'happy',
-    adjective2: 'silly',
-    noun1: 'dragon',
-    noun2: 'castle',
-    verb1: 'jump',
-    verb2: 'dance',
-    adverb1: 'quickly',
-    adverb2: 'carefully',
-    exclamation: 'Wow',
+    adjective2: 'playful',
+    noun1: 'ball',
+    noun2: 'toy',
+    verb1: 'run',
+    verb2: 'jump',
+    adverb: 'quickly',
+    exclamation: 'Woof',
   },
   mama: {
-    adjective1: 'happy',
-    adjective2: 'silly',
-    noun1: 'dragon',
-    noun2: 'castle',
-    verb1: 'jump',
-    verb2: 'dance',
-    adverb1: 'quickly',
-    adverb2: 'carefully',
-    exclamation: 'Wow',
+    adjective1: 'warm',
+    adjective2: 'bubbly',
+    noun1: 'duck',
+    noun2: 'boat',
+    verb1: 'splash',
+    verb2: 'play',
+    adverb: 'happily',
+    exclamation: 'Splash',
   },
   nolan: {
-    adjective1: 'happy',
-    adjective2: 'silly',
-    noun1: 'dragon',
-    noun2: 'castle',
-    verb1: 'jump',
-    verb2: 'dance',
-    adverb1: 'quickly',
-    adverb2: 'carefully',
+    adjective1: 'fun',
+    adjective2: 'colorful',
+    noun1: 'blocks',
+    noun2: 'cups',
+    verb1: 'stack',
+    verb2: 'build',
+    adverb: 'carefully',
     exclamation: 'Wow',
   },
   dada: {
-    adjective1: 'happy',
-    adjective2: 'silly',
-    noun1: 'dragon',
-    noun2: 'castle',
-    verb1: 'jump',
-    verb2: 'dance',
-    adverb1: 'quickly',
-    adverb2: 'carefully',
-    exclamation: 'Wow',
+    adjective1: 'exciting',
+    adjective2: 'amazing',
+    noun1: 'home run',
+    noun2: 'fans',
+    verb1: 'cheer',
+    verb2: 'clap',
+    adverb: 'loudly',
+    exclamation: 'Yay',
   },
 };
 
@@ -78,7 +74,7 @@ const renderReveal = (initialSlideIndex = 0) => {
             setSlideIndex: mockSetSlideIndex,
           }}
         >
-          <Reveal />
+          <Reveal inputs={mockInputs} />
         </AppStateProvider>
       </MemoryRouter>
     ),
@@ -103,7 +99,7 @@ describe('Reveal Component', () => {
             setSlideIndex: vi.fn(),
           }}
         >
-          <Reveal />
+          <Reveal inputs={null} />
         </AppStateProvider>
       </MemoryRouter>
     );
@@ -149,7 +145,7 @@ describe('Reveal Component', () => {
             setSlideIndex: vi.fn(),
           }}
         >
-          <Reveal />
+          <Reveal inputs={mockInputs} />
         </AppStateProvider>
       </MemoryRouter>
     );
@@ -162,5 +158,13 @@ describe('Reveal Component', () => {
     const image = screen.getByAltText('Illustration for this mad lib section');
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', '/images/section-1.png');
+  });
+
+  it('renders the story with filled inputs', () => {
+    render(<Reveal inputs={mockInputs} />);
+    expect(screen.getByText(/Boonie's Adventure/)).toBeInTheDocument();
+    expect(screen.getByText(/Bath Time Fun/)).toBeInTheDocument();
+    expect(screen.getByText(/A Day at Daycare/)).toBeInTheDocument();
+    expect(screen.getByText(/Sports Day/)).toBeInTheDocument();
   });
 }); 
