@@ -1,96 +1,124 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { Section } from './Section';
 import { useAppState } from '../context/AppStateContext';
-import { colors } from '../theme/colors';
 import { templates } from '../data/templates';
-import { Button } from './Button';
+import { colors } from '../theme/colors';
 
-const RevealContainer = styled.div`
+const Container = styled.div`
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
   background-color: ${colors.background};
+  color: ${colors.text};
+`;
+
+const StoryContainer = styled.div`
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: ${colors.background};
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  white-space: pre-wrap;
+  font-size: 1.2rem;
+  line-height: 1.6;
 `;
 
 const NavigationContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem;
-  margin-top: auto;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 2rem;
 `;
 
-export const Reveal: React.FC = () => {
+const Button = styled.button`
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: ${colors.primary};
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: ${colors.primaryDark};
+  }
+
+  &:disabled {
+    background-color: ${colors.disabled};
+    cursor: not-allowed;
+  }
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+export const Reveal = () => {
   const navigate = useNavigate();
   const { inputs, slideIndex, setSlideIndex } = useAppState();
 
   useEffect(() => {
-    // Redirect to form if no inputs are present
-    if (!inputs || Object.values(inputs).some(value => !value)) {
+    if (!inputs) {
       navigate('/');
     }
   }, [inputs, navigate]);
 
   useEffect(() => {
-    // Add keyboard navigation
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft' && slideIndex > 0) {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowLeft' && slideIndex > 0) {
         setSlideIndex(slideIndex - 1);
-      } else if (e.key === 'ArrowRight' && slideIndex < templates.length - 1) {
+      } else if (event.key === 'ArrowRight' && slideIndex < 3) {
         setSlideIndex(slideIndex + 1);
       }
     };
 
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [slideIndex, setSlideIndex]);
 
   if (!inputs) {
     return null;
   }
 
-  const handleBack = () => {
-    if (slideIndex > 0) {
-      setSlideIndex(slideIndex - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (slideIndex < templates.length - 1) {
-      setSlideIndex(slideIndex + 1);
-    }
-  };
-
-  const currentTemplate = templates[slideIndex];
-  const filledTemplate = currentTemplate(inputs);
+  const sectionKeys = ['boonie', 'mama', 'nolan', 'dada'] as const;
+  const currentSection = sectionKeys[slideIndex];
+  const currentTemplate = templates[currentSection];
 
   return (
-    <RevealContainer>
-      <Section
-        template={filledTemplate}
-        inputs={inputs}
-        imageUrl={`/images/section-${slideIndex + 1}.png`}
+    <Container>
+      <StoryContainer>
+        {currentTemplate(inputs)}
+      </StoryContainer>
+      <Image
+        src={`/images/section-${slideIndex + 1}.png`}
+        alt="Illustration for this mad lib section"
       />
       <NavigationContainer>
         <Button
-          onClick={handleBack}
+          onClick={() => setSlideIndex(slideIndex - 1)}
           disabled={slideIndex === 0}
-          aria-label="Previous slide"
-          variant="secondary"
         >
-          ← Back
+          Back
         </Button>
         <Button
-          onClick={handleNext}
-          disabled={slideIndex === templates.length - 1}
-          aria-label="Next slide"
+          onClick={() => setSlideIndex(slideIndex + 1)}
+          disabled={slideIndex === 3}
         >
-          Next →
+          Next
         </Button>
       </NavigationContainer>
-    </RevealContainer>
+    </Container>
   );
 }; 
