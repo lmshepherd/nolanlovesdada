@@ -13,7 +13,7 @@ const Form = styled.form`
 `;
 
 const Title = styled.h1`
-  color: ${colors.text};
+  color: ${colors.black};
   text-align: center;
   margin-bottom: 2rem;
 `;
@@ -55,7 +55,9 @@ const Input = styled.input`
   background: ${colors.background};
   color: ${colors.text};
   font-size: 1rem;
-
+  &::placeholder {
+    color: ${colors.placeholderText};
+  }
   &:focus {
     outline: none;
     border-color: ${colors.primary};

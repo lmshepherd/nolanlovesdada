@@ -28,6 +28,9 @@ const StoryContainer = styled.div`
   white-space: pre-wrap;
   font-size: 1.2rem;
   line-height: 1.6;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  box-sizing: border-box;
 `;
 
 const NavigationContainer = styled.div`
@@ -107,9 +110,7 @@ export default function Reveal({ inputs }: RevealProps) {
 
   return (
     <Container>
-      <StoryContainer>
-        {currentTemplate(inputs)}
-      </StoryContainer>
+      <StoryContainer>{currentTemplate(inputs)}</StoryContainer>
       <Image
         src={`/images/section-${slideIndex + 1}.png`}
         alt="Illustration for this mad lib section"
