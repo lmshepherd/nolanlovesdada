@@ -123,10 +123,15 @@ export default function Reveal({ inputs }: RevealProps) {
           Back
         </Button>
         <Button
-          onClick={() => setSlideIndex(slideIndex + 1)}
-          disabled={slideIndex === 3}
+          onClick={() => {
+            if (slideIndex === 3) {
+              navigate('/final-message');
+            } else {
+              setSlideIndex(slideIndex + 1);
+            }
+          }}
         >
-          Next
+          {slideIndex === 3 ? 'Finish' : 'Next'}
         </Button>
       </NavigationContainer>
     </Container>

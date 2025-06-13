@@ -6,6 +6,36 @@ import { FinalScreen } from './components/FinalScreen';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { useAppState } from './context/AppStateContext';
 import type { MadLibInputs } from './types/MadLibInputs';
+import styled from '@emotion/styled';
+
+const FinalMessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+`;
+
+const FinalImage = styled.img`
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const FinalMessage = () => (
+  <FinalMessageContainer>
+    <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Happy Father's Day 2025</h1>
+    <FinalImage
+      src="/images/final-message.png"
+      alt="Father's Day illustration"
+    />
+    <p style={{ fontSize: '1.5rem' }}>Love, Nolan</p>
+  </FinalMessageContainer>
+);
 
 const AppRoutes = () => {
   const { inputs, slideIndex, setInputs } = useAppState();
@@ -27,6 +57,7 @@ const AppRoutes = () => {
             showFinal ? <FinalScreen /> : <Reveal inputs={inputs} />
           } 
         />
+        <Route path="/final-message" element={<FinalMessage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Layout>
